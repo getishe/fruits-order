@@ -437,44 +437,51 @@ document.addEventListener("DOMContentLoaded", function () {
       const submit = document.querySelector("#btn-sub");
       submit.addEventListener("click", function () {
         const totalDiv = document.querySelector(".tot");
-        // do{
-        if (!input.value) {
-          console.log("Please enter a valid number");
-          return;
-        }
-        const cashReceived = Number(input.value);
-        const totalAmount = Number(
-          totalDiv.textContent.replace(/[^0-9.-]+/g, "")
-        );
+        let cashReceived, totalAmount, result;
+        do {
+          if (!input.value) {
+            console.log("Please enter a valid number");
+            return;
+          }
+          cashReceived = Number(input.value);
+          totalAmount = Number(totalDiv.textContent.replace(/[^0-9.-]+/g, ""));
+          // Calculate the result
+          result = cashReceived - totalAmount;
 
-        // Clear previous result
-        const existingResult = user.querySelectorAll("p");
-        existingResult.forEach((element) => element.remove());
+          // Clear previous result
+          const existingResult = user.querySelectorAll("p");
+          existingResult.forEach((element) => element.remove());
 
-        // Calculate the result
-        const result = cashReceived - totalAmount;
-
-        const pa = document.createElement("p");
-        const Remaining = document.createElement("p");
-        const Additional = document.createElement("p");
-        if (result < 0) {
+          const pa = document.createElement("p");
+          const Remaining = document.createElement("p");
+          const Additional = document.createElement("p");
+          // if (result < 0) {
           pa.textContent = "Cash Received: $" + cashReceived;
-        }
-        if (cashReceived < totalAmount) {
-          Remaining.textContent = "Remaining Balance" + result;
-        }
-        if (cashReceived !== totalAmount) {
-          Additional.textContent = "Please pay additional amount.";
-        }
-        if (result >= 0) {
-          pa.textContent = "Cash Received: $" + cashReceived;
-          Remaining.textContent = "Cash Returned: $" + result;
-          Additional.textContent = "Thank you for your purchase!";
-        }
+          // }
+          if (result < 0) {
+            Remaining.textContent = "Remaining Balance" + Math.abs(result);
+            // }
+            // if (cashReceived !== totalAmount) {
+            Additional.textContent = "Please pay additional amount.";
+            user.appendChild(pa);
+            user.appendChild(Remaining);
+            user.appendChild(Additional);
+          } else {
+            pa.textContent = "Cash Received: $" + cashReceived;
+            Remaining.textContent = "Cash Returned: $" + result;
+            Additional.textContent = "Thank you for your purchase!";
 
-        user.appendChild(pa);
-        user.appendChild(Remaining);
-        user.appendChild(Additional);
+            user.appendChild(pa);
+            user.appendChild(Remaining);
+            user.appendChild(Additional);
+          }
+
+          if (result < 0) {
+            // wait for next input if payment is insufficient
+            input.value = "";
+            return;
+          }
+        } while (result < 0);
         input.value = "";
       });
     });
