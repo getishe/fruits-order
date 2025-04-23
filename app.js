@@ -468,7 +468,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         if (result >= 0) {
           pa.textContent = "Cash Received: $" + cashReceived;
-          Remaining.textContent = "Remaining Balance: $" + result;
+          Remaining.textContent = "Cash Returned: $" + result;
           Additional.textContent = "Thank you for your purchase!";
         }
 
