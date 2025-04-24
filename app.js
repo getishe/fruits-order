@@ -459,7 +459,7 @@ document.addEventListener("DOMContentLoaded", function () {
           pa.textContent = "Cash Received: $" + cashReceived;
           // }
           if (result < 0) {
-            Remaining.textContent = "Remaining Balance" + Math.abs(result);
+            Remaining.textContent = "Remaining Balance: $" + Math.abs(result);
             // }
             // if (cashReceived !== totalAmount) {
             Additional.textContent = "Please pay additional amount.";
