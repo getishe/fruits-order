@@ -435,54 +435,74 @@ document.addEventListener("DOMContentLoaded", function () {
       const user = document.querySelector("#btn-user");
       const input = document.querySelector("#input-sub");
       const submit = document.querySelector("#btn-sub");
-      submit.addEventListener("click", function () {
+      submit.addEventListener("click", async function () {
         const totalDiv = document.querySelector(".tot");
         let cashReceived, totalAmount, result;
-        do {
+
+        // Get the total amount from the cart
+        totalAmount = Number(totalDiv.textContent.replace(/[^0-9.-]+/g, ""));
+
+        // Initialize cashReceived to 0
+        cashReceived = 0;
+
+        // Keep track of total payments
+        let totalPayments = 0;
+
+        while (totalPayments < totalAmount) {
           if (!input.value) {
-            console.log("Please enter a valid number");
+            alert("Please enter a valid amount");
             return;
           }
-          cashReceived = Number(input.value);
-          totalAmount = Number(totalDiv.textContent.replace(/[^0-9.-]+/g, ""));
-          // Calculate the result
-          result = cashReceived - totalAmount;
 
-          // Clear previous result
+          // Get the current payment
+          const currentPayment = Number(input.value);
+          totalPayments += currentPayment;
+
+          // Clear previous results
           const existingResult = user.querySelectorAll("p");
           existingResult.forEach((element) => element.remove());
 
           const pa = document.createElement("p");
           const Remaining = document.createElement("p");
           const Additional = document.createElement("p");
-          // if (result < 0) {
-          pa.textContent = "Cash Received: $" + cashReceived;
-          // }
-          if (result < 0) {
-            Remaining.textContent = "Remaining Balance: $" + Math.abs(result);
-            // }
-            // if (cashReceived !== totalAmount) {
-            Additional.textContent = "Please pay additional amount.";
-            user.appendChild(pa);
-            user.appendChild(Remaining);
-            user.appendChild(Additional);
+
+          pa.textContent = "Payment Received: $" + currentPayment;
+
+          if (totalPayments < totalAmount) {
+            // Still need more payment
+            const remaining = totalAmount - totalPayments;
+            Remaining.textContent =
+              "Remaining Balance: $" + remaining.toFixed(2);
+            Additional.textContent = "Please pay additional amount";
           } else {
-            pa.textContent = "Cash Received: $" + cashReceived;
-            Remaining.textContent = "Cash Returned: $" + result;
+            // Payment complete
+            const change = totalPayments - totalAmount;
+            Remaining.textContent =
+              change > 0
+                ? "Change Due: $" + change.toFixed(2)
+                : "Payment Complete";
             Additional.textContent = "Thank you for your purchase!";
-
-            user.appendChild(pa);
-            user.appendChild(Remaining);
-            user.appendChild(Additional);
           }
 
-          if (result < 0) {
-            // wait for next input if payment is insufficient
-            input.value = "";
-            return;
+          user.appendChild(pa);
+          user.appendChild(Remaining);
+          user.appendChild(Additional);
+
+          // Clear input field
+          input.value = "";
+
+          // If payment is not complete, wait for next input
+          if (totalPayments < totalAmount) {
+            // Wait for next payment
+            await new Promise((resolve) => {
+              const handleNextPayment = () => {
+                submit.removeEventListener("click", handleNextPayment);
+                resolve();
+              };
+              submit.addEventListener("click", handleNextPayment);
+            });
           }
-        } while (result < 0);
-        input.value = "";
+        }
       });
     });
   });
