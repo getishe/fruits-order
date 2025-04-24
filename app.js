@@ -477,6 +477,7 @@ document.addEventListener("DOMContentLoaded", function () {
           } else {
             // Payment complete
             const change = totalPayments - totalAmount;
+
             Remaining.textContent =
               change > 0
                 ? "Change Due: $" + change.toFixed(2)
@@ -492,16 +493,16 @@ document.addEventListener("DOMContentLoaded", function () {
           input.value = "";
 
           // If payment is not complete, wait for next input
-          if (totalPayments < totalAmount) {
-            // Wait for next payment
-            await new Promise((resolve) => {
-              const handleNextPayment = () => {
-                submit.removeEventListener("click", handleNextPayment);
-                resolve();
-              };
-              submit.addEventListener("click", handleNextPayment);
-            });
-          }
+          // if (totalPayments < totalAmount) {
+          //   // Wait for next payment
+          //   await new Promise((resolve) => {
+          //     const handleNextPayment = () => {
+          //       submit.removeEventListener("click", handleNextPayment);
+          //       resolve();
+          //     };
+          //     submit.addEventListener("click", handleNextPayment);
+          //   });
+          // }
         }
       });
     });
