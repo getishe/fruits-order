@@ -435,7 +435,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const user = document.querySelector("#btn-user");
       const input = document.querySelector("#input-sub");
       const submit = document.querySelector("#btn-sub");
-      submit.addEventListener("click", async function () {
+      submit.addEventListener("click", function () {
         const totalDiv = document.querySelector(".tot");
         let cashReceived, totalAmount, result;
 
