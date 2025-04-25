@@ -479,7 +479,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const change = totalPayments - totalAmount;
 
             Remaining.textContent =
-              change === totalPayments
+              change > 0
                 ? "Change Due: $" + change.toFixed(2)
                 : "Payment Complete";
             Additional.textContent = "Thank you for your purchase!";
