@@ -226,17 +226,6 @@ for (let i = 0; i < button2.length; i++) {
     total3Element.style.fontSize = "13px";
     total3Element.style.color = "#7b7b7b";
     total3Element.style.marginTop = "8px";
-
-    //  const display3Element = document.querySelector('#text-3');
-    //  display3Element.textContent = "display: " + count2;
-    //  const prop = ocument.querySelector('.prop')[2];
-    //  prop.style.display = 'flex';
-
-    // Calculate the total price and display it
-    // const totalElement2 = document.querySelector('#tid3');
-    // //if(total2 > 0) {//
-    // totalElement2.textContent = '$' + (count * 10 + count1 * 15 + count2 * 20);
-    //}
   });
 }
 
