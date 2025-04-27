@@ -480,18 +480,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
           // Clear input field
           input.value = "";
-
-          // If payment is not complete, wait for next input
-          // if (totalPayments < totalAmount) {
-          //   // Wait for next payment
-          //   await new Promise((resolve) => {
-          //     const handleNextPayment = () => {
-          //       submit.removeEventListener("click", handleNextPayment);
-          //       resolve();
-          //     };
-          //     submit.addEventListener("click", handleNextPayment);
-          //   });
-          // }
         }
       });
     });
