@@ -463,6 +463,10 @@ document.addEventListener("DOMContentLoaded", function () {
             Remaining.textContent =
               "Remaining Balance: $" + remaining.toFixed(2);
             Additional.textContent = "Please pay additional amount";
+            // if (remaining.input.value.trim() == totalAmount) {
+            //   Remaining.textContent =
+            //     "Remaining Balance is : $" + remaining.toFixed(2);
+            // }
           } else {
             // Payment complete
             const change = totalPayments - totalAmount;
