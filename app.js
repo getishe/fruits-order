@@ -437,54 +437,52 @@ document.addEventListener("DOMContentLoaded", function () {
         // Keep track of total payments
         let totalPayments = 0;
 
-        while (totalPayments < totalAmount) {
-          if (!input.value) {
-            alert("Please enter a valid amount");
-            return;
-          }
-
-          // Get the current payment
-          const currentPayment = Number(input.value);
-          totalPayments += currentPayment;
-
-          // Clear previous results
-          const existingResult = user.querySelectorAll("p");
-          existingResult.forEach((element) => element.remove());
-
-          const pa = document.createElement("p");
-          const Remaining = document.createElement("p");
-          const Additional = document.createElement("p");
-
-          pa.textContent = "Payment Received: $" + currentPayment;
-
-          if (totalPayments < totalAmount) {
-            // Still need more payment
-            const remaining = totalAmount - totalPayments;
-            Remaining.textContent =
-              "Remaining Balance: $" + remaining.toFixed(2);
-            Additional.textContent = "Please pay additional amount";
-            // if (remaining.input.value.trim() == totalAmount) {
-            //   Remaining.textContent =
-            //     "Remaining Balance is : $" + remaining.toFixed(2);
-            // }
-          } else {
-            // Payment complete
-            const change = totalPayments - totalAmount;
-
-            Remaining.textContent =
-              change > 0
-                ? "Change Due: $" + change.toFixed(2)
-                : "Payment Complete";
-            Additional.textContent = "Thank you for your purchase!";
-          }
-
-          user.appendChild(pa);
-          user.appendChild(Remaining);
-          user.appendChild(Additional);
-
-          // Clear input field
-          input.value = "";
+        if (!input.value || isNaN(input.value) || Number(input.value) <= 0) {
+          alert("Please enter a valid amount");
+          return;
         }
+        // if (totalPayments < totalAmount) {
+        // Get the current payment
+        const currentPayment = Number(input.value);
+        totalPayments += currentPayment;
+
+        // Clear previous results
+        const existingResult = user.querySelectorAll("p");
+        existingResult.forEach((element) => element.remove());
+
+        const pa = document.createElement("p");
+        const Remaining = document.createElement("p");
+        const Additional = document.createElement("p");
+
+        pa.textContent = "Payment Received: $" + currentPayment;
+
+        if (totalPayments < totalAmount) {
+          // Still need more payment
+          const remaining = totalAmount - totalPayments;
+          Remaining.textContent = "Remaining Balance: $" + remaining.toFixed(2);
+          Additional.textContent = "Please pay additional amount";
+          // if (remaining.input.value.trim() == totalAmount) {
+          //   Remaining.textContent =
+          //     "Remaining Balance is : $" + remaining.toFixed(2);
+          // }
+        } else {
+          // Payment complete
+          const change = totalPayments - totalAmount;
+
+          Remaining.textContent =
+            change > 0
+              ? "Change Due: $" + change.toFixed(2)
+              : "Payment Complete";
+          Additional.textContent = "Thank you for your purchase!";
+        }
+
+        user.appendChild(pa);
+        user.appendChild(Remaining);
+        user.appendChild(Additional);
+
+        // Clear input field
+        input.value = "";
+        // }
       });
     });
   });
