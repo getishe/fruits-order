@@ -437,7 +437,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Keep track of total payments
         let totalPayments = 0;
 
-        if (!useSome.value.trim()) {
+        if (useSome.value.trim() === "") {
           alert("Input cannot be empty. Please enter a valid amount");
           useSome.focus();
           return;
