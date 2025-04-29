@@ -442,11 +442,11 @@ document.addEventListener("DOMContentLoaded", function () {
           useSome.focus();
           return;
         }
-        if (!useSome.value.trim() || isNaN(Number(useSome.value.trim()))) {
-          alert("Please enter a valid numeric amount greater than 0");
-          useSome.focus();
-          return;
-        }
+        // if (!useSome.value.trim() || isNaN(Number(useSome.value.trim()))) {
+        //   alert("Please enter a valid numeric amount greater than 0");
+        //   useSome.focus();
+        //   return;
+        // }
         // if (totalPayments < totalAmount) {
         // Get the current payment
         const currentPayment = Number(useSome.value);
