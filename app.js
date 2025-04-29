@@ -422,7 +422,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Cash Received
       const user = document.querySelector("#btn-user");
-      const input = document.querySelector("#input-sub");
+      const useSome = document.querySelector("#input-sub");
       const submit = document.querySelector("#btn-sub");
       submit.addEventListener("click", function () {
         const totalDiv = document.querySelector(".tot");
@@ -437,13 +437,19 @@ document.addEventListener("DOMContentLoaded", function () {
         // Keep track of total payments
         let totalPayments = 0;
 
-        if (!input.value || isNaN(input.value) || Number(input.value) <= 0) {
-          alert("Please enter a valid amount");
+        if (!useSome.value.trim()) {
+          alert("Input cannot be empty. Please enter a valid amount");
+          useSome.focus();
           return;
         }
         // if (totalPayments < totalAmount) {
         // Get the current payment
-        const currentPayment = Number(input.value);
+        const currentPayment = Number(useSome.value);
+        if (isNaN(currentPayment) || currentPayment <= 0) {
+          alert("Please enter a valid numeric amount greater than 0");
+          useSome.focus();
+          return;
+        }
         totalPayments += currentPayment;
 
         // Clear previous results
@@ -481,7 +487,7 @@ document.addEventListener("DOMContentLoaded", function () {
         user.appendChild(Additional);
 
         // Clear input field
-        input.value = "";
+        useSome.value = "";
         // }
       });
     });
