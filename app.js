@@ -444,42 +444,24 @@ document.addEventListener("DOMContentLoaded", function () {
     const Additional = document.createElement("p");
 
     pa.textContent = "Payment Received: $" + currentPayment;
-    while (totalAmount > 0) {
-      Remaining.textContent = "Remaining Balance: $" + totalAmount.toFixed(2);
-      if (totalPayments > totalAmount) {
-        result = totalPayments - totalAmount;
-        Remaining.textContent = "Change Due: $" + result.toFixed(2);
-        Additional.textContent = "Thank you for your purchase!";
-        break;
-      } else if (totalPayments === totalAmount) {
-        Remaining.textContent = "Payment Complete";
-        Additional.textContent = "Thank you for your purchase!";
-        break;
-      } else if (totalPayments < totalAmount) {
-        result = totalPayments - totalAmount;
-        Remaining.textContent =
-          "Remaining Balance: $" + Math.abs(result).toFixed(2);
-        Additional.textContent = "Please pay additional amount";
-      }
-      break;
-    }
-    // if (totalPayments < totalAmount) {
-    //   // Still need more payment
-    //   const remaining = totalAmount - totalPayments;
-    //   Remaining.textContent = "Remaining Balance: $" + remaining.toFixed(2);
-    //   Additional.textContent = "Please pay additional amount";
-    //   // if (remaining.input.value.trim() == totalAmount) {
-    //   //   Remaining.textContent =
-    //   //     "Remaining Balance is : $" + remaining.toFixed(2);
-    //   // }
-    // } else {
-    //   // Payment complete
-    //   const change = totalPayments - totalAmount;
 
-    //   Remaining.textContent =
-    //     change > 0 ? "Change Due: $" + change.toFixed(2) : "Payment Complete";
-    //   Additional.textContent = "Thank you for your purchase!";
-    // }
+    if (totalPayments < totalAmount) {
+      // Still need more payment
+      const remaining = totalAmount - totalPayments;
+      Remaining.textContent = "Remaining Balance: $" + remaining.toFixed(2);
+      Additional.textContent = "Please pay additional amount";
+      // if (remaining.input.value.trim() == totalAmount) {
+      //   Remaining.textContent =
+      //     "Remaining Balance is : $" + remaining.toFixed(2);
+      // }
+    } else {
+      // Payment complete
+      const change = totalPayments - totalAmount;
+
+      Remaining.textContent =
+        change > 0 ? "Change Due: $" + change.toFixed(2) : "Payment Complete";
+      Additional.textContent = "Thank you for your purchase!";
+    }
 
     user.appendChild(pa);
     user.appendChild(Remaining);
