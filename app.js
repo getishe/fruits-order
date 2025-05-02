@@ -457,11 +457,9 @@ document.addEventListener("DOMContentLoaded", function () {
         break;
       } else if (totalPayments < totalAmount) {
         result = totalPayments - totalAmount;
-        Remaining.textContent = "Remaining Balance: $" + result.toFixed(2);
+        Remaining.textContent =
+          "Remaining Balance: $" + Math.abs(result).toFixed(2);
         Additional.textContent = "Please pay additional amount";
-        if (result.input.value.trim() === totalAmount) {
-          Additional.textContent = "Thank you for your purchase!";
-        }
       }
       break;
     }
