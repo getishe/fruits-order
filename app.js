@@ -462,7 +462,6 @@ document.addEventListener("DOMContentLoaded", function () {
         if (result.input.value.trim() === totalAmount) {
           Additional.textContent = "Thank you for your purchase!";
         }
-        break;
       }
       break;
     }
