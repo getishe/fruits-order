@@ -404,22 +404,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
   submit.addEventListener("click", function () {
     const totalDiv = document.querySelector(".tot");
-    let cashReceived, totalAmount, result;
+    let totalPayments = Number(useSome.value.trim());
 
     // Get the total amount from the cart
-    totalAmount = Number(totalDiv.textContent.replace(/[^0-9.-]+/g, ""));
+    const totalAmount = Number(totalDiv.textContent.replace(/[^0-9.-]+/g, ""));
 
     // Initialize cashReceived to 0
-    cashReceived = 0;
+    // cashReceived = 0;
 
     // Keep track of total payments
-    let totalPayments = 0;
+    // let totalPayments = 0;
 
-    if (useSome.value.trim() === "") {
-      alert("Input cannot be empty. Please enter a valid amount");
-      useSome.focus();
-      return;
-    }
     // if (!useSome.value.trim() || isNaN(Number(useSome.value.trim()))) {
     //   alert("Please enter a valid numeric amount greater than 0");
     //   useSome.focus();
@@ -427,14 +422,19 @@ document.addEventListener("DOMContentLoaded", function () {
     // }
     // if (totalPayments < totalAmount) {
     // Get the current payment
-    const currentPayment = Number(useSome.value);
-    if (isNaN(currentPayment) || currentPayment <= 0) {
-      alert("Please enter a valid numeric amount greater than 0");
+    // const currentPayment = Number(useSome.value);
+    // if (isNaN(currentPayment) || currentPayment <= 0) {
+    //   alert("Please enter a valid numeric amount greater than 0");
+    //   useSome.focus();
+    //   return;
+    // }
+
+    if (!totalPayments || isNaN(totalPayments) || totalPayments <= 0) {
+      alert("Input cannot be empty. Please enter a valid amount");
       useSome.focus();
+      useSome.value = "";
       return;
     }
-    totalPayments += currentPayment;
-
     // Clear previous results
     const existingResult = user.querySelectorAll("p");
     existingResult.forEach((element) => element.remove());
@@ -443,16 +443,21 @@ document.addEventListener("DOMContentLoaded", function () {
     const Remaining = document.createElement("p");
     const Additional = document.createElement("p");
 
-    pa.textContent = "Payment Received: $" + currentPayment;
-
+    pa.textContent = "Payment Received: $" + totalPayments;
+    // while (totalPayments === totalAmount) {
     if (totalPayments < totalAmount) {
       // Still need more payment
       const remaining = totalAmount - totalPayments;
       Remaining.textContent = "Remaining Balance: $" + remaining.toFixed(2);
       Additional.textContent = "Please pay additional amount";
-      // if (remaining.input.value.trim() == totalAmount) {
+
+      if (remaining === totalPayments) {
+        totalPayments += remaining;
+      }
+      // while (remaining === totalAmount) {
       //   Remaining.textContent =
       //     "Remaining Balance is : $" + remaining.toFixed(2);
+      //   Additional.textContent = "Thank you for your purchase!";
       // }
     } else {
       // Payment complete
@@ -462,7 +467,7 @@ document.addEventListener("DOMContentLoaded", function () {
         change > 0 ? "Change Due: $" + change.toFixed(2) : "Payment Complete";
       Additional.textContent = "Thank you for your purchase!";
     }
-
+    // }
     user.appendChild(pa);
     user.appendChild(Remaining);
     user.appendChild(Additional);
