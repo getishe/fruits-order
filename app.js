@@ -422,17 +422,18 @@ document.addEventListener("DOMContentLoaded", function () {
     const pa = document.createElement("p");
     const Remaining = document.createElement("p");
     const Additional = document.createElement("p");
-
+    const Received = document.createElement("p");
     // Get running total of payments from data attribute or initialize it
     let totalPayments = Number(user.dataset.totalPayments || 0);
     totalPayments += currentPayment;
     user.dataset.totalPayments = totalPayments;
 
-    pa.textContent = "Total Payments: $" + totalPayments.toFixed(2);
+    pa.textContent = "Cash Received $" + totalPayments.toFixed(2);
 
     if (totalPayments < totalAmount) {
       // Still need more payment
       const remaining = totalAmount - totalPayments;
+
       Remaining.textContent = "Remaining Balance: $" + remaining.toFixed(2);
       Additional.textContent = "Please pay additional amount";
     } else {

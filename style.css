@@ -224,3 +224,91 @@ button {
   margin-top: 8px;
   text-transform: none;
 }
+
+@media screen and (max-width: 768px) {
+  .container {
+    /* border: 2px solid blue; */
+    width: 90%;
+    padding: 10px;
+  }
+
+  .container-3 {
+    flex-direction: column;
+    /* float: left; */
+    /* border: 2px solid green; */
+  }
+
+  .side-container {
+    width: 100%;
+    float: none;
+    margin-top: 20px;
+    /* border: 2px solid black; */
+  }
+
+  .imgbox img {
+    width: 100px;
+    height: 130px;
+  }
+
+  div.container-3 button.btn,
+  button.btn1,
+  button.btn2 {
+    /* border: 2px solid red !important; */
+    font-size: 12px;
+    padding: 10px;
+  }
+
+  input[type="text"] {
+    width: calc(100% - 32px);
+    padding: 6px;
+    font-size: 12px;
+  }
+
+  button {
+    font-size: 8px;
+    padding: 5px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  section {
+    flex-direction: column;
+  }
+  .container {
+    width: 100%;
+    padding: 5px;
+  }
+
+  .container-3 {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .side-container {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+  }
+
+  .imgbox img {
+    width: 80px;
+    height: 100px;
+  }
+
+  .btn.btn1.btn2 {
+    border: 2px solid red;
+    font-size: 6px;
+    padding: 4px;
+  }
+
+  input[type="text"] {
+    width: calc(100% - 24px);
+    padding: 4px;
+    font-size: 10px;
+  }
+
+  button {
+    font-size: 6px;
+    padding: 4px;
+  }
+}
