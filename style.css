@@ -266,6 +266,7 @@ button {
   .container {
     width: 90%;
     padding: 10px;
+    /* border: 2px solid blue; */
   }
 
   .container-3 {
@@ -274,10 +275,26 @@ button {
   }
 
   .side-container {
-    width: 100%;
+    border: 2px solid #ccc;
+
+    width: 90%;
+    padding: 10px;
     float: none;
     margin-top: 20px;
     /* border: 2px solid black; */
+  }
+
+  .side-box {
+    margin-left: 20px;
+    border: 2px solid #ccc;
+    padding: 60px;
+    margin: 10px;
+  }
+
+  .display {
+    /* border: 2px solid red; */
+    max-width: 300px;
+    /* border: 2px solid red; */
   }
 
   .imgbox img {
@@ -298,8 +315,8 @@ button {
   }
 
   input[type="text"] {
-    width: calc(100% - 32px);
-    padding: 6px;
+    /* width: calc(100% - 32px); */
+    /* padding: 6px; */
     font-size: 12px;
   }
 
@@ -322,10 +339,23 @@ button {
   }
 
   .side-container {
-    width: 100%;
+    /* max-width: 200px; */
+    width: 90%;
+    padding: 10px;
     float: none;
     margin-top: 20px;
     /* border: 2px solid black; */
+  }
+
+  .side-box {
+    border: 2px solid #ccc;
+    padding: 30px;
+    margin: 10px;
+  }
+
+  .display {
+    max-width: 300px;
+    border: 2px solid red;
   }
 
   .imgbox img {
@@ -342,8 +372,8 @@ button {
   }
 
   input[type="text"] {
-    width: calc(100% - 32px);
-    padding: 6px;
+    /* width: calc(100% - 32px); */
+    /* padding: 6px; */
     font-size: 12px;
   }
 
@@ -358,19 +388,33 @@ button {
     flex-direction: column;
   }
   .container {
+    /* border: 2px solid blue; */
     width: 100%;
     padding: 5px;
   }
 
   .container-3 {
+    /* border: 2px solid green; */
     flex-direction: column;
     padding: 10px;
   }
 
   .side-container {
+    /* border: 2px solid black; */
     width: 100%;
     margin-top: 10px;
     padding: 10px;
+  }
+
+  .side-box {
+    border: 2px solid #ccc;
+    padding: 30px;
+    margin: 10px;
+  }
+
+  .display {
+    max-width: 300px;
+    border: 2px solid red;
   }
 
   .imgbox img {
@@ -385,8 +429,8 @@ button {
   }
 
   input[type="text"] {
-    width: calc(100% - 24px);
-    padding: 4px;
+    /* width: calc(100% - 24px); */
+    /* padding: 10px; */
     font-size: 10px;
   }
 
