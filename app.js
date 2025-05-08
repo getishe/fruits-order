@@ -233,7 +233,18 @@ const pp = document.querySelectorAll("#text-1, #text-2, #text-3");
 pp.forEach((p, index) => {
   const plus = document.createElement("button");
   plus.textContent = "+";
+  plus.style.fontSize = "10px";
   plus.style.textAlign = "center";
+  plus.style.border = "2px solid #ccc";
+  plus.addEventListener("mouseover", () => {
+    plus.style.backgroundColor = "#333";
+    plus.style.cursor = "pointer";
+  });
+  plus.addEventListener("mouseout", () => {
+    plus.style.backgroundColor = "";
+    plus.style.cursor = "default";
+  });
+  plus.style.borderRadius = "5px";
   // plus.style.border = '1px solid red';
   // plus.style.height = '122px';
   plus.style.width = "25px";
@@ -244,8 +255,19 @@ pp.forEach((p, index) => {
 
   const minus = document.createElement("button");
   minus.textContent = "-";
+  minus.style.fontSize = "10px";
   minus.style.textAlign = "center";
-  // minus.style.border = '1px solid red';
+  // minus.style.border = "1px solid red";
+  minus.addEventListener("mouseover", () => {
+    minus.style.backgroundColor = "#333";
+    minus.style.cursor = "pointer";
+  });
+  minus.addEventListener("mouseout", () => {
+    minus.style.backgroundColor = "";
+    minus.style.cursor = "default";
+  });
+  minus.style.border = "2px solid #ccc";
+  minus.style.borderRadius = "5px";
   minus.style.height = "40px";
   minus.style.width = "25px";
   minus.classList.add(`minus-${index + 1}`);
@@ -255,9 +277,21 @@ pp.forEach((p, index) => {
   const removeButton = document.createElement("button");
   // removeButton = 'Remove';
   removeButton.textContent = "Remove";
+  removeButton.style.fontSize = "10px";
   removeButton.style.textAlign = "center";
   removeButton.classList.add(`remove-${index + 1}`);
+  removeButton.style.border = "2px solid #ccc";
+  removeButton.addEventListener("mouseover", () => {
+    removeButton.style.backgroundColor = "#333";
+    removeButton.style.cursor = "pointer";
+  });
+  removeButton.addEventListener("mouseout", () => {
+    removeButton.style.backgroundColor = "";
+    removeButton.style.cursor = "default";
+  });
+  removeButton.style.borderRadius = "5px";
   removeButton.style.textAlign = "center";
+  // removeButton.style.border = "1px solid red";
   // removeButton.style.width = '80px';
   removeButton.style.height = "40px";
   removeButton.style.width = "65px";
@@ -422,7 +456,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const pa = document.createElement("p");
     const Remaining = document.createElement("p");
     const Additional = document.createElement("p");
-    const Received = document.createElement("p");
+    // const Received = document.createElement("p");
     // Get running total of payments from data attribute or initialize it
     let totalPayments = Number(user.dataset.totalPayments || 0);
     totalPayments += currentPayment;
