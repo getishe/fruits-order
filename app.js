@@ -514,7 +514,7 @@ document.addEventListener("DOMContentLoaded", function () {
           parseFloat(element.textContent.replace(/[^0-9.-]+/g, "")) || 0;
         sum += price;
       });
-      useSome.focus();
+
       const content = document.querySelectorAll(".prop");
 
       let totalDiv = document.querySelector(".tot");
