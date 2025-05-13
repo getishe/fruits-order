@@ -481,13 +481,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
         Remaining.textContent = "Remaining Balance: $" + remaining.toFixed(2);
         Additional.textContent = "Please pay additional amount";
+        useSome.focus();
       } else {
         // Payment complete
         const change = totalPayments - totalAmount;
         Remaining.textContent =
           change > 0 ? "Change Due: $" + change.toFixed(2) : "Payment Complete";
         Additional.textContent = "Thank you for your purchase!";
-
+        useSome.focus();
         // Reset the payment tracking
         user.dataset.totalPayments = "0";
       }
