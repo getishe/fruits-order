@@ -159,13 +159,13 @@ h2.rec {
   font-weight: bold;
 }
 .container-3 {
-  border: 2px solid green;
+  /* border: 2px solid green; */
   display: flex;
   margin: 10px;
   padding: 40px;
 }
 .box {
-  border: 2px solid aqua;
+  /* border: 2px solid aqua; */
   padding: 30px;
   margin: 10px;
   /* max-width: 300px; */
@@ -231,7 +231,7 @@ button {
   width: 130px;
   height: 170px;
   object-fit: contain;
-  border: 2px solid black;
+  /* border: 2px solid black; */
   padding: 10px;
 }
 .imgbox .box-img1 {
@@ -414,7 +414,7 @@ button {
 
   .display {
     max-width: 300px;
-    border: 2px solid red;
+    /* border: 2px solid red; */
   }
 
   .imgbox img {
@@ -423,7 +423,7 @@ button {
   }
 
   .btn.btn1.btn2 {
-    border: 2px solid red;
+    /* border: 2px solid red; */
     font-size: 6px;
     padding: 4px;
   }
