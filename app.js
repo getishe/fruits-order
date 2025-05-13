@@ -447,6 +447,8 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!totalAmount) {
         event.preventDefault();
         alert("Add chart");
+        useSome.focus();
+        useSome.value = "";
         return;
       }
       // Validate input
