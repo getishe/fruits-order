@@ -436,57 +436,71 @@ document.addEventListener("DOMContentLoaded", function () {
   const useSome = document.querySelector("#input-sub");
   const submit = document.querySelector("#btn-sub");
 
-  submit.addEventListener("click", function () {
-    const totalDiv = document.querySelector(".tot");
-    let currentPayment = Number(useSome.value.trim());
-    const totalAmount = Number(totalDiv.textContent.replace(/[^0-9.-]+/g, ""));
+  submit.addEventListener("click", function (event) {
+    try {
+      const totalDiv = document.querySelector(".tot");
+      let currentPayment = Number(useSome.value.trim());
+      const totalAmount = Number(
+        totalDiv.textContent.replace(/[^0-9.-]+/g, "")
+      );
 
-    // Validate input
-    if (!currentPayment || isNaN(currentPayment) || currentPayment <= 0) {
-      alert("Input cannot be empty. Please enter a valid amount");
-      useSome.focus();
+      if (!totalAmount) {
+        event.preventDefault();
+        alert("Add chart");
+        return;
+      }
+      // Validate input
+      if (!currentPayment || isNaN(currentPayment) || currentPayment <= 0) {
+        alert("Input cannot be empty. Please enter a valid amount");
+        useSome.focus();
+        useSome.value = "";
+        return;
+      }
+
+      // Clear previous results
+      const existingResult = user.querySelectorAll("p");
+      existingResult.forEach((element) => element.remove());
+
+      const pa = document.createElement("p");
+      const Remaining = document.createElement("p");
+      const Additional = document.createElement("p");
+      // const Received = document.createElement("p");
+      // Get running total of payments from data attribute or initialize it
+      let totalPayments = Number(user.dataset.totalPayments || 0);
+      totalPayments += currentPayment;
+      user.dataset.totalPayments = totalPayments;
+
+      pa.textContent = "Cash Received $" + totalPayments.toFixed(2);
+
+      if (totalPayments < totalAmount) {
+        // Still need more payment
+        const remaining = totalAmount - totalPayments;
+
+        Remaining.textContent = "Remaining Balance: $" + remaining.toFixed(2);
+        Additional.textContent = "Please pay additional amount";
+      } else {
+        // Payment complete
+        const change = totalPayments - totalAmount;
+        Remaining.textContent =
+          change > 0 ? "Change Due: $" + change.toFixed(2) : "Payment Complete";
+        Additional.textContent = "Thank you for your purchase!";
+
+        // Reset the payment tracking
+        user.dataset.totalPayments = "0";
+      }
+
+      user.appendChild(pa);
+      user.appendChild(Remaining);
+      user.appendChild(Additional);
+
+      // Clear input field
       useSome.value = "";
-      return;
+    } catch (error) {
+      console.error("Error processing payment:", error);
+      alert(
+        "An error occurred while processing the payment. Please try again."
+      );
     }
-
-    // Clear previous results
-    const existingResult = user.querySelectorAll("p");
-    existingResult.forEach((element) => element.remove());
-
-    const pa = document.createElement("p");
-    const Remaining = document.createElement("p");
-    const Additional = document.createElement("p");
-    // const Received = document.createElement("p");
-    // Get running total of payments from data attribute or initialize it
-    let totalPayments = Number(user.dataset.totalPayments || 0);
-    totalPayments += currentPayment;
-    user.dataset.totalPayments = totalPayments;
-
-    pa.textContent = "Cash Received $" + totalPayments.toFixed(2);
-
-    if (totalPayments < totalAmount) {
-      // Still need more payment
-      const remaining = totalAmount - totalPayments;
-
-      Remaining.textContent = "Remaining Balance: $" + remaining.toFixed(2);
-      Additional.textContent = "Please pay additional amount";
-    } else {
-      // Payment complete
-      const change = totalPayments - totalAmount;
-      Remaining.textContent =
-        change > 0 ? "Change Due: $" + change.toFixed(2) : "Payment Complete";
-      Additional.textContent = "Thank you for your purchase!";
-
-      // Reset the payment tracking
-      user.dataset.totalPayments = "0";
-    }
-
-    user.appendChild(pa);
-    user.appendChild(Remaining);
-    user.appendChild(Additional);
-
-    // Clear input field
-    useSome.value = "";
   });
   let sum = 0;
   allButtons.forEach((button) => {
