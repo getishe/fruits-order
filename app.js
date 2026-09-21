@@ -1,5 +1,5 @@
 // const bovc = document.querySelectorAll('#p-but'); // Select all elements with id "p-but"
-
+console.log(bovc)
 // for (let i = 0; i < bovc.length; i++) {
 //   // Create a new button for each element
 //   const newButton = document.createElement('button');
