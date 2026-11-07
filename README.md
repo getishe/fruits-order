@@ -1,6 +1,6 @@
 # Fruits Order Application
 
-## Description
+## Descriptions
 
 A simple application for ordering fruits online.
 
