@@ -4,7 +4,7 @@
 
 A simple application for ordering fruits online.
 
-## Live Demo
+## Live Demo live session 
 
 Check out the live demo: [Fruits Order App](https://getishe.github.io/fruits-order/)
 
